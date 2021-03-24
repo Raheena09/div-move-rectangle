@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <title>Document</title>
+</head>
+<body onLoad=init()>
+    <canvas id="myCanvas" width="400" height="400" style="border: 5px solid black; margin: 20px 468px 0px 468px;    background: linear-gradient(to bottom left, #33ccff 0%, #ff99cc 100%);">
+    </canvas>
+    <div style="display: flex;margin: 10px 600px;">
+    <button type="button" class="btn btn-light" onclick=location.reload(); style="margin:0px 10px;">Start</button>
+    <button type="button" class="btn btn-dark" onclick=stop(); >Stop</button>
+</div>
+</body>
+<script>
+    var context;
+    var x=0;
+    var y=200;
+    var dx=5;
+    var dy=5;
+    
+
+    var myVar= setInterval(draw,10);
+
+// var x1 = document.getElementById('myCanvas').clientWidth;
+// var y1 = document.getElementById('myCanvas').clientHeight;
+
+   function init(){
+       context=myCanvas.getContext("2d");
+    //    var myVar= setInterval(draw,10);
+       
+
+      
+   }
+    function draw(){
+        context.clearRect(0,0,400,400);
+        context.beginPath();
+       context.fillStyle="black";
+
+    // Draws a circle of radius 20 at the coordinates 100,100 on the canvas
+       context.arc(x,y,20,0,Math.PI*2,true);
+       context.closePath();
+       context.fill();
+
+
+
+        if(x<0 || x>400 ) dx=-dx;
+        if(y<0 || y>400 ) dy=-dy;
+
+       x+=dx;
+       y+=dy;
+    }
+
+    function stop(){
+        clearInterval(myVar);
+        // alert('stopp');
+    }
+</script>
+</html>
